@@ -1,0 +1,27 @@
+Okay, so i need to decide what powerup each player has (hider and seeker)
+
+Hider:
+
+* start move: collect powerup tokens around the map, to have a chance to roll a random powerup
+
+speed boost - DONE
+trap - DONE
+phase through walls
+weapon to swap roles
+
+--------------------------------------------------------------------------------------------
+
+Seeker:
+
+Teleport to the player in radius of maybe like 154 pixels away (like 9 blocks in minecraft?)
+state -> not hiding
+
+Grapple Hook
+
+Xray
+
+Lock the hider in place, should only happen when the hider is in the hidden state and is far
+away from the seeker:D
+
+chargable powerup: so u stand still for 5 seconds, with a cool down of 20 seconds
+and you get a direction of where u have to go towards :D
