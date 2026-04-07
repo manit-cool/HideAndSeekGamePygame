@@ -9,6 +9,7 @@ class powerup_manager():
         self.seeker = hider
         self.powerup.append(powerups.speed_boost())
         self.powerup.append(powerups.trap())
+        self.powerup.append(powerups.phase_through_walls())
 
     def draw_powerups(self):
         for i in self.powerup:
@@ -20,10 +21,11 @@ class powerup_manager():
     
     def powerup_updates(self):
         for i in self.powerup:
-            if i.name == "speed":
+            if i.name == "speed" or  i.name == "phase":
                 i.update(self.player)
                 if i.effect_dur == True:
                     self.powerup.remove(i)
+
             if i.name == "trap":
                 i.update(self.player, self.seeker)
 

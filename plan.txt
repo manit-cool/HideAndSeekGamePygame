@@ -6,7 +6,7 @@ Hider:
 
 speed boost - DONE
 trap - DONE
-phase through walls
+phase through walls - DONE
 weapon to swap roles
 
 --------------------------------------------------------------------------------------------

@@ -21,7 +21,7 @@ class Main():
         self.collidables.append(self.Seeker)
         self.collidables.append(self.powerup_management.powerup[0])
         self.collidables.append(self.powerup_management.powerup[1])  
- 
+        self.collidables.append(self.powerup_management.powerup[2])
         self.obstacles = []
         for i in range(random.randint(10, 15)):
             self.obstacles.append(obstacles.wall())

@@ -6,8 +6,6 @@ class speed_boost():
         self.speed_boost_applied = 2.24
         self.rect = pygame.Rect(random.randint(0,1255), random.randint(0,695), 25, 25)
         self.name = "speed"
-        
-
         self.collected = False
         self.timer = 0
 
@@ -108,11 +106,20 @@ class phase_through_walls():
     
     def collisions(self, player):
         if pygame.Rect.colliderect(self.rect, player):
-            player.rect.x = 1230
+            self.rect.x = 1300
             self.collected = True
+            player.phase = True
 
     def timer_start(self):
         self.timer += 1
 
     def effect_dur(self, player):
-        pass
+        if self.timer >= 540:
+            player.phase = False
+            return True
+        return False
+    
+    def update(self, player):
+        if self.collected:
+            self.timer_start() 
+            self.effect_dur(player)
