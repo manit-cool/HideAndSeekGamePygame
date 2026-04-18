@@ -3,20 +3,19 @@ import random
 
 class wall():
     def __init__(self):
-        self.x = random.randint(50, 1205)
-        self.y = random.randint(50, 645)
+        self.x = random.randint(250, 1030)
+        self.y = random.randint(250, 470)
         self.rect = pygame.Rect(self.x, self.y, random.randint(100, 250), random.randint(100, 250))
-
-
 
     def draw(self, screen):
         pygame.draw.rect(screen,(205, 247, 213),self.rect)
 
     def un_stuck(self, collidables):
         for i in collidables:
-            if self.rect.colliderect(i.rect):
+            while self.rect.colliderect(i.rect):
                 if i.name == 1 and i.phase == True:
-                    pass
+                    break
+                
                 else:
                     overlap_left   = i.rect.right - self.rect.left
                     overlap_right  = self.rect.right - i.rect.left
