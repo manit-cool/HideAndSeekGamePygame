@@ -1,4 +1,4 @@
-import player, pygame, random, powerups, powerup_managing_system, powerup_management_seeker, obstacles
+import player, pygame, random, powerups, powerup_managing_system, powerup_management_seeker, obstacles, time
 # a cool nice and fun game :D
 # really cool and fun hide and seek game :D
 
@@ -33,7 +33,7 @@ class Main():
 
         self.obstacles[-1].rect.center = self.Seeker.rect.center
         self.obstacles[-1].rect.top = self.Seeker.rect.bottom
-
+    
     def update(self):
         while self.running:
 
@@ -54,9 +54,24 @@ class Main():
             self.powerup_management.update_powerups()
             self.powerup_management_seeker.update_powerups(self.obstacles)
 
-            pygame.display.flip()   
+            pygame.display.flip()
+
+            if self.Seeker.rect.colliderect(self.Hider.rect):         
+                my_font = pygame.font.SysFont('Arial', 30)
+                
+                text = my_font.render("Game Over.", True, (255,25,2))
+                
+                pygame.draw.rect(self.screen, (2,2,2), (0, 0, 2000, 2000))
+                
+                self.screen.blit(text, (140, 150))
+
+                pygame.display.flip()
+
+                time.sleep(5)
+                self.__init__()
+
             self.clock.tick(120) 
 
-main = Main()
 
+main = Main()
 main.update()
