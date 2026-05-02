@@ -1,5 +1,6 @@
 import pygame
 import random
+import obstacles
 
 class speed_boost():
     def __init__(self):
@@ -92,7 +93,7 @@ class trap():
         
         return True
     
-class phase_through_walls():
+class phase_through_walls(): 
     def __init__(self):
         self.name = "phase"
         self.rect = pygame.Rect(random.randint(0,1255), random.randint(0,695), 25, 25)
@@ -123,3 +124,25 @@ class phase_through_walls():
         if self.collected:
             self.timer_start() 
             self.effect_dur(player)
+
+class barricade():
+    def __init__(self):
+        self.name = "barricade"
+        self.rect = pygame.Rect(random.randint(0,1255), random.randint(0,695), 25, 25)
+        self.can_place = False
+        
+    def draw(self, screen):
+        pygame.draw.rect(screen, (173, 240, 255), self.rect)
+
+    def collision(self, player ,Obstacles):
+        if pygame.Rect.colliderect(self.rect, player.rect):
+            self.rect.x = 2000
+            self.can_place = True
+        keys = pygame.key.get_pressed()
+
+        if self.can_place and keys[pygame.K_RSHIFT]:
+            Obstacles.append(obstacles.wall())    
+            Obstacles[-1].rect.x = player.rect.x 
+            Obstacles[-1].rect.y = player.rect.bottom
+            self.can_place = False
+    

@@ -13,9 +13,8 @@ class wall():
     def un_stuck(self, collidables):
         for i in collidables:
             while self.rect.colliderect(i.rect):
-                if i.name == 1 and i.phase == True:
+                if i.name == 1 and i.phase == True or i.name == 0 and i.phase == True:
                     break
-                
                 else:
                     overlap_left   = i.rect.right - self.rect.left
                     overlap_right  = self.rect.right - i.rect.left

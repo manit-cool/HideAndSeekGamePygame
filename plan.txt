@@ -2,19 +2,18 @@ Okay, so i need to decide what powerup each player has (hider and seeker)
 
 Hider:
 
-* start move: collect powerup tokens around the map, to have a chance to roll a random powerup
-
 speed boost - DONE
-trap - DONE
 phase through walls - DONE
+
+Special:
+trap - DONE
 
 --------------------------------------------------------------------------------------------
 
 Seeker:
 
-Teleport to the player in radius of maybe like 154 pixels away (like 9 blocks in minecraft?)
+speed boost (aswell)
+phase through walls (also)
 
-Grapple Hook - not using the mouse, but the direction the hider is going towards! 
-
-
-
+Special:
+Barricade

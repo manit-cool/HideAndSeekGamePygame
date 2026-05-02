@@ -1,4 +1,4 @@
-import player, pygame, random, powerups, powerup_managing_system, obstacles
+import player, pygame, random, powerups, powerup_managing_system, powerup_management_seeker, obstacles
 # a cool nice and fun game :D
 # really cool and fun hide and seek game :D
 
@@ -15,20 +15,28 @@ class Main():
         
         #powerups
         self.powerup_management = powerup_managing_system.powerup_manager(self.screen, self.Hider, self.Seeker) # this one is for the player!
-        self.powerup_management_seeker = None
+        self.powerup_management_seeker = powerup_management_seeker.powerup_manager(self.screen, self.Seeker)
         self.collidables = []
+
         self.collidables.append(self.Hider)
         self.collidables.append(self.Seeker)
         self.collidables.append(self.powerup_management.powerup[0])
         self.collidables.append(self.powerup_management.powerup[1])  
         self.collidables.append(self.powerup_management.powerup[2])
+        self.collidables.append(self.powerup_management_seeker.powerup[0])
+        self.collidables.append(self.powerup_management_seeker.powerup[1])  
+        self.collidables.append(self.powerup_management_seeker.powerup[2])
         self.obstacles = []
+        
         for i in range(random.randint(10, 15)):
             self.obstacles.append(obstacles.wall())
 
+        self.obstacles[-1].rect.center = self.Seeker.rect.center
+        self.obstacles[-1].rect.top = self.Seeker.rect.bottom
+
     def update(self):
         while self.running:
- 
+
             for event in pygame.event.get(): 
                 if event.type == pygame.QUIT:
                     self.running = False
@@ -44,6 +52,8 @@ class Main():
             self.Hider.movement()
             self.Seeker.movement_arrow_pad()
             self.powerup_management.update_powerups()
+            self.powerup_management_seeker.update_powerups(self.obstacles)
+
             pygame.display.flip()   
             self.clock.tick(120) 
 
